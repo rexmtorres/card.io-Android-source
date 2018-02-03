@@ -20,6 +20,12 @@ android:
     - extra-android-support
     - extra-android-m2repository
     - extra-google-m2repository
+licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-preview-license'
+    - 'android-sdk-license-.+'
+    - 'android-sdk-license'
+    - 'google-gdk-license-.+'
 before_install:
   - export ANDROID_HOME=/usr/local/android-sdk
   - wget https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip -O ndk.bin
