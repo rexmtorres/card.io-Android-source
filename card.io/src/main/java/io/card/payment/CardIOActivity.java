@@ -221,8 +221,8 @@ public final class CardIOActivity extends Activity {
     public static final String EXTRA_KEEP_APPLICATION_THEME = "io.card.payment.keepApplicationTheme";
 
     /**
-     * Boolean extra. Optional. If this value is set to <code>true</code>, the scanner view will not rotate
-     * along with the device.  Default value is {@code false}.
+     * Boolean extra. Optional. If this value is set to <code>true</code>, the scanner view will
+     * remain in portrait mode.  Default value is {@code false}.
      */
     public static final String EXTRA_LOCK_ORIENTATION = "io.card.payment.lockOrientation";
 
@@ -991,7 +991,6 @@ public final class CardIOActivity extends Activity {
             RelativeLayout.LayoutParams keyboardParams = (RelativeLayout.LayoutParams) keyboardBtn
                     .getLayoutParams();
             keyboardParams.width = LayoutParams.WRAP_CONTENT;
-
             keyboardParams.height = LayoutParams.WRAP_CONTENT;
             keyboardParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
             ViewUtil.setPadding(keyboardBtn, Appearance.CONTAINER_MARGIN_HORIZONTAL, null,
