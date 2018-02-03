@@ -19,10 +19,10 @@ Brought to you by
 Using card.io
 -------------
 
-To incorporate _this fork_ of **card.io** within your Android app, specify the following dependencies (replacing '5.5.2' with the desired/latest version):
+To incorporate _this fork_ of **card.io** within your Android app, specify the following dependencies (replacing '[5.5.2](https://bintray.com/rainai/maven/card.io?source=watch)' with the desired/latest version):
 - For Gradle:
     ````
-    compile 'com.rmt.android:card.io:5.5.2
+    compile 'com.rmt.android:card.io:5.5.2'
     ````
 - For Maven:
     ````
