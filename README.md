@@ -1,4 +1,5 @@
 [![Download](https://api.bintray.com/packages/rainai/maven/card.io/images/download.svg?version=5.5.2) ](https://bintray.com/rainai/maven/card.io/5.5.2/link)
+[![Build Status](https://travis-ci.org/rexmtorres/card.io-Android-source.svg?branch=dev)](https://travis-ci.org/rexmtorres/card.io-Android-source)
 
 [![card.io logo](https://raw.githubusercontent.com/card-io/press-kit/master/card_io_logo_200.png "card.io")](https://www.card.io)
 
