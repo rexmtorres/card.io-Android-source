@@ -1,4 +1,8 @@
 sudo: true
+# blocklist
+branches:
+  except:
+  - master
 addons:
   apt:
     packages:
