@@ -19,7 +19,28 @@ Brought to you by
 Using card.io
 -------------
 
-If you merely wish to incorporate **card.io** within your Android app, simply download the latest official release from https://github.com/card-io/card.io-Android-SDK. That repository includes complete integration instructions and sample code.
+To incorporate _this fork_ of **card.io** within your Android app, specify the following dependencies (replacing '5.5.2' with the desired/latest version):
+- For Gradle:
+    ````
+    compile 'com.rmt.android:card.io:5.5.2
+    ````
+- For Maven:
+    ````
+    <dependency>
+       <groupId>com.rmt.android</groupId>
+       <artifactId>card.io</artifactId>
+       <version>5.5.2</version>
+       <type>pom</type>
+     </dependency>
+    ````
+- For Ivy:
+    ````
+    <dependency org='com.rmt.android' name='card.io' rev='5.5.2'>
+      <artifact name='card.io' ext='pom' ></artifact>
+    </dependency>
+    ````
+
+Please refer to [https://github.com/card-io/card.io-Android-SDK](https://github.com/card-io/card.io-Android-SDK) for the complete integration instructions and sample code, as well as for the official release.  While I do try to get my changes in this fork integrated into the official repo, that repo may not contain the customizations found in this fork.
 
 Dev Setup
 ---------
