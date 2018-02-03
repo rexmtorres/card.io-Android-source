@@ -27,6 +27,7 @@ licenses:
     - 'android-sdk-license'
     - 'google-gdk-license-.+'
 before_install:
+  - yes | sdkmanager "platforms;android-27"
   - export ANDROID_HOME=/usr/local/android-sdk
   - wget https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip -O ndk.bin
   - 7z x ndk.bin > /dev/null
