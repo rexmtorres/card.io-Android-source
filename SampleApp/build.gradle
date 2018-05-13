@@ -19,12 +19,13 @@ repositories {
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.sdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "io.card.development"
         minSdkVersion 18
-        targetSdkVersion 27
+        targetSdkVersion rootProject.ext.sdkVersion
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
