@@ -150,7 +150,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_nSetup__ZFI(JNIEnv *env,
+JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_z4DA2269C(JNIEnv *env,
         jobject thiz, jboolean shouldOnlyDetectCard, jfloat jMinFocusScore, jint jUnblurDigits) {
   dmz_debug_log("Java_io_card_payment_CardScanner_nSetup");
   dmz_trace_log("dmz trace enabled");
@@ -174,18 +174,18 @@ JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_nSetup__ZFI(JNIEnv *env,
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_nSetup__ZF(JNIEnv *env,
+JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_z402D26CF(JNIEnv *env,
         jobject thiz, jboolean shouldOnlyDetectCard, jfloat jMinFocusScore) {
-    return Java_io_card_payment_CardScanner_nSetup__ZFI(env, thiz, shouldOnlyDetectCard, jMinFocusScore, unblurDigits);
+    return Java_io_card_payment_CardScanner_z4DA2269C(env, thiz, shouldOnlyDetectCard, jMinFocusScore, unblurDigits);
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_nResetAnalytics(JNIEnv *env, jobject thiz) {
+JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_z2C725A82(JNIEnv *env, jobject thiz) {
   scanner_reset(&scannerState);
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_nCleanup(JNIEnv *env, jobject thiz) {
+JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_z52E03B66(JNIEnv *env, jobject thiz) {
   dmz_debug_log("Java_io_card_payment_CardScanner_nCleanup");
 
   if (dmz_refcount == 1) {
@@ -197,7 +197,7 @@ JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_nCleanup(JNIEnv *env, jo
 }
 
 extern "C"
-JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_nGetGuideFrame(JNIEnv *env, jobject thiz,
+JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_z394F2993(JNIEnv *env, jobject thiz,
     jint orientation, jint width, jint height, jobject rect)
 {
   dmz_trace_log("Java_io_card_payment_CardScanner_nGetGuideFrame");
@@ -308,7 +308,7 @@ void setDetectedCardImage(JNIEnv* env, jobject jCardResultBitmap,
 
 /* This method forms the core of card.io scanning. All others (nCardDetected & nGetFocusScore) */
 extern "C"
-JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_nScanFrame(JNIEnv *env, jobject thiz,
+JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_z6E55F982(JNIEnv *env, jobject thiz,
     jbyteArray jb, jint width, jint height, jint orientation, jobject dinfo,
     jobject jCardResultBitmap, jboolean jScanExpiry) {
   dmz_trace_log("Java_io_card_payment_CardScanner_nScanFrame ... width:%i height:%i orientation:%i", width, height, orientation);
@@ -386,7 +386,7 @@ JNIEXPORT void JNICALL Java_io_card_payment_CardScanner_nScanFrame(JNIEnv *env, 
 }
 
 extern "C"
-JNIEXPORT jint JNICALL Java_io_card_payment_CardScanner_nGetNumFramesScanned(JNIEnv *env, jobject thiz) {
+JNIEXPORT jint JNICALL Java_io_card_payment_CardScanner_z9B09ADE0(JNIEnv *env, jobject thiz) {
   return scannerState.session_analytics.num_frames_scanned;
 }
 

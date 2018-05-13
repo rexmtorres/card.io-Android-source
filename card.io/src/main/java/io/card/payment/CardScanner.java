@@ -58,26 +58,90 @@ class CardScanner implements Camera.PreviewCallback, Camera.AutoFocusCallback,
     static final int CREDIT_CARD_TARGET_HEIGHT = 270; // kCreditCardTargetHeight
 
     // NATIVE
-    public static native boolean nUseNeon();
 
-    public static native boolean nUseTegra();
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // START: nativeDecider.cpp
 
-    public static native boolean nUseX86();
+    // nUseNeon
+    // SHA-256: D6C9E40B723EECCE80629BFD7CF1ACF9D97CBBA32553FA37266FA5CCDC780D0C
+    private static native boolean zD6C9E40B();
+    public static boolean nUseNeon() {
+        return zD6C9E40B();
+    }
 
-    private native void nSetup(boolean shouldDetectOnly, float minFocusScore);
+    // nUseTegra
+    // SHA-256: 61F56930BB03AA4D5BE5CD0DFC453D63608E6BA3E47A0D66AC85DF838F6238DD
+    private static native boolean z61F56930();
+    public static boolean nUseTegra() {
+        return z61F56930();
+    }
 
-    private native void nSetup(boolean shouldDetectOnly, float minFocusScore, int unBlur);
+    // nUseX86
+    // SHA-256: 4A9C9788185AC90AB64BD1FBC29111A7F9105F5E7016D6EC98733F806DD530F3
+    private static native boolean z4A9C9788();
+    public static boolean nUseX86() {
+        return z4A9C9788();
+    }
 
-    private native void nResetAnalytics();
+    // END: nativeDecider.cpp
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private native void nGetGuideFrame(int orientation, int previewWidth, int previewHeight, Rect r);
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // START: nativeRecognizer.cpp
 
-    private native void nScanFrame(byte[] data, int frameWidth, int frameHeight, int orientation,
-                                   DetectionInfo dinfo, Bitmap resultBitmap, boolean scanExpiry);
+    // nSetup__ZF
+    // SHA-256: 402D26CFA3356AC2F0746EFFE150D2332945A775D0BF54202DD3D9005F64B82A
+    private native void z402D26CF(boolean shouldDetectOnly, float minFocusScore);
+    private void nSetup(boolean shouldDetectOnly, float minFocusScore) {
+        z402D26CF(shouldDetectOnly, minFocusScore);
+    }
 
-    private native int nGetNumFramesScanned();
+    // nSetup__ZFI
+    // SHA-256: 4DA2269CD963EC75B12B0A90A861B88C589C5E954CE0812053368F9AE1AB1245
+    private native void z4DA2269C(boolean shouldDetectOnly, float minFocusScore, int unBlur);
+    private void nSetup(boolean shouldDetectOnly, float minFocusScore, int unBlur) {
+        z4DA2269C(shouldDetectOnly, minFocusScore, unBlur);
+    }
 
-    private native void nCleanup();
+    // nResetAnalytics
+    // SHA-256: 2C725A829E9AD29BB157D571C588C8BA649DC914B24A19DA9A69844CB903DCD2
+    private native void z2C725A82();
+    private void nResetAnalytics() {
+        z2C725A82();
+    }
+
+    // nGetGuideFrame
+    // SHA-256: 394F29931806C9D5A189B7B258446A8CE8CC6667B0D403FE4885530C011E0153
+    private native void z394F2993(int orientation, int previewWidth, int previewHeight, Rect r);
+    private void nGetGuideFrame(int orientation, int previewWidth, int previewHeight, Rect r) {
+        z394F2993(orientation, previewWidth, previewHeight, r);
+    }
+
+    // nScanFrame
+    // SHA-256: 6E55F98241A13490B1B38F749920F1219E0E455FB6A575D45E2CC985A2BB82F1
+    private native void z6E55F982(byte[] data, int frameWidth, int frameHeight, int orientation,
+                                 DetectionInfo dinfo, Bitmap resultBitmap, boolean scanExpiry);
+    private void nScanFrame(byte[] data, int frameWidth, int frameHeight, int orientation,
+                                   DetectionInfo dinfo, Bitmap resultBitmap, boolean scanExpiry) {
+        z6E55F982(data, frameWidth, frameHeight, orientation, dinfo, resultBitmap, scanExpiry);
+    }
+
+    // nGetNumFramesScanned
+    // SHA-256: 9B09ADE06865C6A0CA1803785A7F2576E233583977A0D93324BD90AA188479AE
+    private native int z9B09ADE0();
+    private int nGetNumFramesScanned() {
+        return z9B09ADE0();
+    }
+
+    // nCleanup
+    // SHA-256: 52E03B66F0CA987314EFA2D49041A12F1695A5BEC855CC31729F748E663737D4
+    private native void z52E03B66();
+    private void nCleanup() {
+        z52E03B66();
+    }
+
+    // END: nativeRecognizer.cpp
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     private Bitmap detectedBitmap;
 
