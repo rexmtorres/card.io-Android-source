@@ -1,4 +1,4 @@
-[![Download](https://api.bintray.com/packages/rainai/maven/card.io/images/download.svg?version=5.5.3) ](https://bintray.com/rainai/maven/card.io/5.5.3/link)
+[![Download](https://api.bintray.com/packages/rainai/maven/card.io/images/download.svg?version=5.5.4) ](https://bintray.com/rainai/maven/card.io/5.5.4/link)
 [![Build Status](https://travis-ci.org/rexmtorres/card.io-Android-source.svg?branch=dev)](https://travis-ci.org/rexmtorres/card.io-Android-source)
 
 [![card.io logo](https://raw.githubusercontent.com/card-io/press-kit/master/card_io_logo_200.png "card.io")](https://www.card.io)
@@ -19,23 +19,23 @@ Brought to you by
 Using card.io
 -------------
 
-To incorporate _this fork_ of **card.io** within your Android app, specify the following dependencies (replacing '[5.5.3](https://bintray.com/rainai/maven/card.io?source=watch)' with the desired/latest version):
+To incorporate _this fork_ of **card.io** within your Android app, specify the following dependencies (replacing '[5.5.4](https://bintray.com/rainai/maven/card.io?source=watch)' with the desired/latest version):
 - For Gradle:
     ````
-    compile 'com.rmt.android:card.io:5.5.3'
+    compile 'com.rmt.android:card.io:5.5.4'
     ````
 - For Maven:
     ````
     <dependency>
        <groupId>com.rmt.android</groupId>
        <artifactId>card.io</artifactId>
-       <version>5.5.3</version>
+       <version>5.5.4</version>
        <type>pom</type>
      </dependency>
     ````
 - For Ivy:
     ````
-    <dependency org='com.rmt.android' name='card.io' rev='5.5.3'>
+    <dependency org='com.rmt.android' name='card.io' rev='5.5.4'>
       <artifact name='card.io' ext='pom' ></artifact>
     </dependency>
     ````
