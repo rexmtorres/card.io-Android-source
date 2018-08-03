@@ -307,7 +307,7 @@ public final class CardIOActivity extends Activity {
     private FrameLayout mMainLayout;
     private boolean useApplicationTheme;
 
-    private CardScanner mCardScanner;
+    private ngc mNgc;
 
     private boolean manualEntryFallbackOrForced = false;
 
@@ -367,7 +367,7 @@ public final class CardIOActivity extends Activity {
 
         if (clientData.getBooleanExtra(EXTRA_NO_CAMERA, false)) {
             manualEntryFallbackOrForced = true;
-        } else if (!CardScanner.processorSupported()){
+        } else if (!ngc.processorSupported()){
             manualEntryFallbackOrForced = true;
         } else {
             try {
@@ -469,12 +469,12 @@ public final class CardIOActivity extends Activity {
                 Class<?> testScannerClass = Class.forName("io.card.payment.CardScannerTester");
                 Constructor<?> cons = testScannerClass.getConstructor(this.getClass(),
                         Integer.TYPE);
-                mCardScanner = (CardScanner) cons.newInstance(new Object[] { this,
+                mNgc = (ngc) cons.newInstance(new Object[] { this,
                         mFrameOrientation });
             } else {
-                mCardScanner = new CardScanner(this, mFrameOrientation);
+                mNgc = new ngc(this, mFrameOrientation);
             }
-            mCardScanner.prepareScanner();
+            mNgc.prepareScanner();
 
             setPreviewLayout();
 
@@ -505,11 +505,11 @@ public final class CardIOActivity extends Activity {
     }
 
     private void doOrientationChange(int orientation) {
-        if (orientation < 0 || mCardScanner == null) {
+        if (orientation < 0 || mNgc == null) {
             return;
         }
 
-        orientation += mOrientationLocked ? 0 : mCardScanner.getRotationalOffset();
+        orientation += mOrientationLocked ? 0 : mNgc.getRotationalOffset();
 
         // Check if we have gone too far forward with
         // rotation adjustment, keep the result between 0-360
@@ -534,7 +534,7 @@ public final class CardIOActivity extends Activity {
             mFrameOrientation = ORIENTATION_LANDSCAPE_RIGHT;
         }
         if (degrees >= 0 && degrees != mLastDegrees) {
-            mCardScanner.setDeviceOrientation(mFrameOrientation);
+            mNgc.setDeviceOrientation(mFrameOrientation);
             setDeviceDegrees(degrees);
             if (degrees == 90) {
                 rotateCustomOverlay(270);
@@ -606,8 +606,8 @@ public final class CardIOActivity extends Activity {
         }
         setFlashOn(false);
 
-        if (mCardScanner != null) {
-            mCardScanner.pauseScanning();
+        if (mNgc != null) {
+            mNgc.pauseScanning();
         }
     }
 
@@ -620,9 +620,9 @@ public final class CardIOActivity extends Activity {
         }
         setFlashOn(false);
 
-        if (mCardScanner != null) {
-            mCardScanner.endScanning();
-            mCardScanner = null;
+        if (mNgc != null) {
+            mNgc.endScanning();
+            mNgc = null;
         }
 
         super.onDestroy();
@@ -672,7 +672,7 @@ public final class CardIOActivity extends Activity {
             } catch (RuntimeException re) {
                 Log.w(TAG, "*** could not return to preview: " + re);
             }
-        } else if (mCardScanner != null) {
+        } else if (mNgc != null) {
             super.onBackPressed();
         }
     }
@@ -763,7 +763,7 @@ public final class CardIOActivity extends Activity {
             Log.w(Util.PUBLIC_LOG_TAG, "Exception while attempting to vibrate: ", e);
         }
 
-        mCardScanner.pauseScanning();
+        mNgc.pauseScanning();
         mUIBar.setVisibility(View.INVISIBLE);
 
         if (dInfo.predicted()) {
@@ -774,9 +774,9 @@ public final class CardIOActivity extends Activity {
         float sf;
         if (mFrameOrientation == ORIENTATION_PORTRAIT
                 || mFrameOrientation == ORIENTATION_PORTRAIT_UPSIDE_DOWN) {
-            sf = mGuideFrame.right / (float)CardScanner.CREDIT_CARD_TARGET_WIDTH * .95f;
+            sf = mGuideFrame.right / (float) ngc.CREDIT_CARD_TARGET_WIDTH * .95f;
         } else {
-            sf = mGuideFrame.right / (float)CardScanner.CREDIT_CARD_TARGET_WIDTH * 1.15f;
+            sf = mGuideFrame.right / (float) ngc.CREDIT_CARD_TARGET_WIDTH * 1.15f;
         }
 
         Matrix m = new Matrix();
@@ -861,7 +861,7 @@ public final class CardIOActivity extends Activity {
     private boolean restartPreview() {
         mDetectedCard = null;
         assert mPreview != null;
-        boolean success = mCardScanner.resumeScanning(mPreview.getSurfaceHolder());
+        boolean success = mNgc.resumeScanning(mPreview.getSurfaceHolder());
         if (success) {
             mUIBar.setVisibility(View.VISIBLE);
         }
@@ -878,7 +878,7 @@ public final class CardIOActivity extends Activity {
             return;
         }
 
-        mGuideFrame = mCardScanner.getGuideFrame(sv.getWidth(), sv.getHeight());
+        mGuideFrame = mNgc.getGuideFrame(sv.getWidth(), sv.getHeight());
 
         // adjust for surface view y offset
         mGuideFrame.top += sv.getTop();
@@ -889,18 +889,18 @@ public final class CardIOActivity extends Activity {
 
     // Called by OverlayView
     void toggleFlash() {
-        setFlashOn(!mCardScanner.isFlashOn());
+        setFlashOn(!mNgc.isFlashOn());
     }
 
     void setFlashOn(boolean b) {
-        boolean success = (mPreview != null && mOverlay != null && mCardScanner.setFlashOn(b));
+        boolean success = (mPreview != null && mOverlay != null && mNgc.setFlashOn(b));
         if (success) {
             mOverlay.setTorchOn(b);
         }
     }
 
     void triggerAutoFocus() {
-        mCardScanner.triggerAutoFocus(true);
+        mNgc.triggerAutoFocus(true);
     }
 
     /**
@@ -918,7 +918,7 @@ public final class CardIOActivity extends Activity {
         FrameLayout previewFrame = new FrameLayout(this);
         previewFrame.setId(FRAME_ID);
 
-        mPreview = new Preview(this, null, mCardScanner.mPreviewWidth, mCardScanner.mPreviewHeight);
+        mPreview = new Preview(this, null, mNgc.mPreviewWidth, mNgc.mPreviewHeight);
         mPreview.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT, Gravity.TOP));
         previewFrame.addView(mPreview);

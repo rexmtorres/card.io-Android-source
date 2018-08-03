@@ -72,7 +72,7 @@ class Util {
     }
 
     private static boolean hardwareSupportCheck() {
-        if (!CardScanner.processorSupported()) {
+        if (!ngc.processorSupported()) {
             Log.w(PUBLIC_LOG_TAG, "- Processor type is not supported");
             return false;
         }

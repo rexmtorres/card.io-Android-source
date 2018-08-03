@@ -1,6 +1,6 @@
 package io.card.payment;
 
-/* CardScannerTester.java
+/* ngcTester.java
  * See the file "LICENSE.md" for the full license governing this code.
  */
 
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 
-public class CardScannerTester extends CardScanner {
+public class ngcTester extends ngc {
 
     private static final long FRAME_INTERVAL = (long) (1000.0 / 30);
 
@@ -27,7 +27,7 @@ public class CardScannerTester extends CardScanner {
         sCardAssetName = cardAssetName;
     }
 
-    public CardScannerTester(CardIOActivity scanActivity, int currentFrameOrientation) {
+    public ngcTester(CardIOActivity scanActivity, int currentFrameOrientation) {
         super(scanActivity, currentFrameOrientation);
         useCamera = false;
         mScanAllowed = false;

@@ -461,7 +461,7 @@ class OverlayView extends View {
         paint.setTextSize(CARD_NUMBER_MARKUP_FONT_SIZE * mScale);
 
         int len = mDetectedCard.ag.length();
-        float sf = mBitmap.getWidth() / (float)CardScanner.CREDIT_CARD_TARGET_WIDTH;
+        float sf = mBitmap.getWidth() / (float) ngc.CREDIT_CARD_TARGET_WIDTH;
         int yOffset = (int) ((mDetectedCard.yoff * sf - 6));
         for (int i = 0; i < len; i++) {
             int xOffset = (int) (mDetectedCard.xoff[i] * sf);

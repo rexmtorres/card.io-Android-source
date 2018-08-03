@@ -31,9 +31,9 @@ class Preview extends ViewGroup {
     public Preview(Context context, AttributeSet attributeSet, int previewWidth, int previewHeight) {
         super(context, attributeSet);
 
-        // the preview size comes from the cardScanner (camera)
+        // the preview size comes from the ngc (camera)
         // need to swap width & height to account for implicit 90deg rotation
-        // which is part of cardScanner. see "mCamera.setDisplayOrientation(90);"
+        // which is part of ngc. see "mCamera.setDisplayOrientation(90);"
         mPreviewWidth = previewHeight;
         mPreviewHeight = previewWidth;
 
