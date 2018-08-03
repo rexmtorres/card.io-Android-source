@@ -46,7 +46,7 @@ class DetectionInfo {
         return complete;
     }
 
-    nfa creditCard() {
+    nfa bca() {
         String numberStr = new String();
         for (int i = 0; i < 16 && 0 <= prediction[i] && prediction[i] < 10; i++) {
             numberStr += String.valueOf(prediction[i]);

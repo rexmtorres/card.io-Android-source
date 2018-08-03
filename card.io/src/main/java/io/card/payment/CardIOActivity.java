@@ -767,7 +767,7 @@ public final class CardIOActivity extends Activity {
         mUIBar.setVisibility(View.INVISIBLE);
 
         if (dInfo.predicted()) {
-            mDetectedCard = dInfo.creditCard();
+            mDetectedCard = dInfo.bca();
             mOverlay.setDetectedCard(mDetectedCard);
         }
 
