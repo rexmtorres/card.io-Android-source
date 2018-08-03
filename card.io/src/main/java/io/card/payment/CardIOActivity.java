@@ -114,7 +114,7 @@ public final class CardIOActivity extends Activity {
     public static final String EXTRA_USE_CARDIO_LOGO = "io.card.payment.useCardIOLogo";
 
     /**
-     * Parcelable extra containing {@link CreditCard}. The data intent returned to your {@link android.app.Activity}'s
+     * Parcelable extra containing {@link nfa}. The data intent returned to your {@link android.app.Activity}'s
      * {@link Activity#onActivityResult(int, int, Intent)} will contain this extra if the resultCode is
      * {@link #RESULT_CARD_INFO}.
      */
@@ -294,7 +294,7 @@ public final class CardIOActivity extends Activity {
     // TODO: the preview is accessed by the scanner. Not the best practice.
     Preview mPreview;
 
-    private CreditCard mDetectedCard;
+    private nfa mDetectedCard;
     private Rect mGuideFrame;
     private int mLastDegrees;
     private int mFrameOrientation;

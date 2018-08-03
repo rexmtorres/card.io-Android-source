@@ -24,7 +24,7 @@ import java.util.List;
 
 import io.card.payment.CardIOActivity;
 import io.card.payment.CardType;
-import io.card.payment.CreditCard;
+import io.card.payment.nfa;
 import io.card.payment.i18n.StringKey;
 import io.card.payment.i18n.SupportedLocale;
 import io.card.payment.i18n.locales.LocalizedStringsList;
@@ -172,7 +172,7 @@ public class SampleActivity extends Activity {
 
         if ((requestCode == REQUEST_SCAN || requestCode == REQUEST_AUTOTEST) && data != null
                 && data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
-            CreditCard result = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
+            nfa result = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
             if (result != null) {
                 outStr += "Card number: " + result.getRedactedCardNumber() + "\n";
 
@@ -182,11 +182,11 @@ public class SampleActivity extends Activity {
                         + cardType.getDisplayName(null) + "\n";
 
                 if (mEnableExpiryToggle.isChecked()) {
-                    outStr += "Expiry: " + result.expiryMonth + "/" + result.expiryYear + "\n";
+                    outStr += "Expiry: " + result.bg + "/" + result.cc + "\n";
                 }
 
                 if (mCvvToggle.isChecked()) {
-                    outStr += "CVV: " + result.cvv + "\n";
+                    outStr += "CVV: " + result.bc + "\n";
                 }
 
                 if (mPostalCodeToggle.isChecked()) {
@@ -194,7 +194,7 @@ public class SampleActivity extends Activity {
                 }
 
                 if (mCardholderNameToggle.isChecked()) {
-                    outStr += "Cardholder Name: " + result.cardholderName + "\n";
+                    outStr += "Cardholder Name: " + result.sc + "\n";
                 }
             }
 

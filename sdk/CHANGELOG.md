@@ -291,7 +291,7 @@ IMPORTANT: You should delete libs/armeabi*/libcardio.so from your project direct
 * Made the charge screens more beautiful.
 * Add support for JCB cards.
 * Removed first digit card detection from CardType. Use CardType.fromCardNumber(String) instead.
-* Remove deprecated CardIOCreditCardResult. Use CreditCard instead.
+* Remove deprecated CardIOCreditCardResult. Use nfa instead.
 * Gather additional information for fraud detection.
 * Add additional sanity checking for crash prevention.
 

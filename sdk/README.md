@@ -110,16 +110,16 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == MY_SCAN_REQUEST_CODE) {
         String resultDisplayStr;
         if (data != null && data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
-            CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
+            nfa scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
 
             // Never log a raw card number. Avoid displaying it, but if necessary use getFormattedCardNumber()
             resultDisplayStr = "Card Number: " + scanResult.getRedactedCardNumber() + "\n";
 
             // Do something with the raw number, e.g.:
-            // myService.setCardNumber( scanResult.cardNumber );
+            // myService.setCardNumber( scanResult.ag );
 
             if (scanResult.isExpiryValid()) {
-                resultDisplayStr += "Expiration Date: " + scanResult.expiryMonth + "/" + scanResult.expiryYear + "\n";
+                resultDisplayStr += "Expiration Date: " + scanResult.bg + "/" + scanResult.expiryYear + "\n";
             }
 
             if (scanResult.cvv != null) {

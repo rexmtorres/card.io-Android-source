@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
 
 import io.card.payment.CardIOActivity;
 import io.card.payment.CardScannerTester;
-import io.card.payment.CreditCard;
+import io.card.payment.nfa;
 
 import static com.lukekorth.deviceautomator.DeviceAutomator.onDevice;
 import static junit.framework.Assert.assertEquals;
@@ -33,7 +33,7 @@ public class CardIOActivityTest {
         startScan();
 
         waitForActivityToFinish();
-        CreditCard result = getActivityResultIntent().getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
+        nfa result = getActivityResultIntent().getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
         assertEquals("3743 260055 74998", result.getFormattedCardNumber());
     }
 

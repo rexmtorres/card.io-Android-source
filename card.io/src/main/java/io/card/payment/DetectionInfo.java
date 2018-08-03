@@ -19,7 +19,7 @@ class DetectionInfo {
     public int[] prediction;
     public int expiry_month;
     public int expiry_year;
-    public CreditCard detectedCard;
+    public nfa detectedCard;
 
     public DetectionInfo() {
         complete = false;
@@ -28,7 +28,7 @@ class DetectionInfo {
         prediction[0] = -1;
         prediction[15] = -1;
 
-        detectedCard = new CreditCard();
+        detectedCard = new nfa();
     }
 
     ;
@@ -46,16 +46,16 @@ class DetectionInfo {
         return complete;
     }
 
-    CreditCard creditCard() {
+    nfa creditCard() {
         String numberStr = new String();
         for (int i = 0; i < 16 && 0 <= prediction[i] && prediction[i] < 10; i++) {
             numberStr += String.valueOf(prediction[i]);
         }
-        detectedCard.cardNumber = numberStr;
+        detectedCard.ag = numberStr;
 
         // set these regardless. They'll just be zeroes if not found.
-        detectedCard.expiryMonth = expiry_month;
-        detectedCard.expiryYear = expiry_year;
+        detectedCard.bg = expiry_month;
+        detectedCard.cc = expiry_year;
         
         return detectedCard;
     }

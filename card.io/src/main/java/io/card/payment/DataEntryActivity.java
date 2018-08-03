@@ -75,7 +75,7 @@ public final class DataEntryActivity extends Activity implements TextWatcher {
     private ImageView cardView;
     private Button doneBtn;
     private Button cancelBtn;
-    private CreditCard capture;
+    private nfa capture;
 
     private boolean autoAcceptDone;
     private String labelLeftPadding;
@@ -132,7 +132,7 @@ public final class DataEntryActivity extends Activity implements TextWatcher {
         autoAcceptDone = getIntent().getBooleanExtra("debug_autoAcceptResult", false);
 
         if (capture != null) {
-            numberValidator = new CardNumberValidator(capture.cardNumber);
+            numberValidator = new CardNumberValidator(capture.ag);
 
             cardView = new ImageView(this);
 
@@ -231,7 +231,7 @@ public final class DataEntryActivity extends Activity implements TextWatcher {
             }
 
             if (capture != null) {
-                expiryValidator = new ExpiryValidator(capture.expiryMonth, capture.expiryYear);
+                expiryValidator = new ExpiryValidator(capture.bg, capture.cc);
             } else {
                 expiryValidator = new ExpiryValidator();
             }
@@ -427,15 +427,15 @@ public final class DataEntryActivity extends Activity implements TextWatcher {
 
     private void completed() {
         if (capture == null) {
-            capture = new CreditCard();
+            capture = new nfa();
         }
         if (expiryEdit != null) {
-            capture.expiryMonth = ((ExpiryValidator) expiryValidator).month;
-            capture.expiryYear = ((ExpiryValidator) expiryValidator).year;
+            capture.bg = ((ExpiryValidator) expiryValidator).month;
+            capture.cc = ((ExpiryValidator) expiryValidator).year;
         }
 
-        CreditCard result = new CreditCard(numberValidator.getValue(), capture.expiryMonth,
-                capture.expiryYear, cvvValidator.getValue(), postalCodeValidator.getValue(),
+        nfa result = new nfa(numberValidator.getValue(), capture.bg,
+                capture.cc, cvvValidator.getValue(), postalCodeValidator.getValue(),
                 cardholderNameValidator.getValue());
         Intent dataIntent = new Intent();
         dataIntent.putExtra(CardIOActivity.EXTRA_SCAN_RESULT, result);

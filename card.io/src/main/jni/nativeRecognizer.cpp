@@ -105,9 +105,9 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     return -1;
   }
 
-  jclass creditCardClass = (jclass)env->FindClass("io/card/payment/CreditCard");
+  jclass creditCardClass = (jclass)env->FindClass("io/card/payment/nfa");
   if (creditCardClass == NULL) {
-    dmz_error_log("Couldn't find CreditCard class");
+    dmz_error_log("Couldn't find nfa class");
     return -1;
   }
   creditCardId.classRef = (jclass)env->NewGlobalRef(creditCardClass);
@@ -115,7 +115,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
   creditCardId.yoff = env->GetFieldID(creditCardClass, "yoff", "I");
   creditCardId.xoff = env->GetFieldID(creditCardClass, "xoff", "[I");
   if (!( creditCardId.flipped && creditCardId.yoff && creditCardId.xoff )) {
-    dmz_error_log("at least one filed was not found for CreditCard");
+    dmz_error_log("at least one filed was not found for nfa");
     return -1;
   }
 
@@ -134,7 +134,7 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
   detectionInfoId.prediction = env->GetFieldID(dInfoClass, "prediction", "[I");
   detectionInfoId.expiry_month = env->GetFieldID(dInfoClass, "expiry_month", "I");
   detectionInfoId.expiry_year = env->GetFieldID(dInfoClass, "expiry_year", "I");
-  detectionInfoId.detectedCard = env->GetFieldID(dInfoClass, "detectedCard", "Lio/card/payment/CreditCard;");
+  detectionInfoId.detectedCard = env->GetFieldID(dInfoClass, "detectedCard", "Lio/card/payment/nfa;");
 
   if (!(detectionInfoId.complete && detectionInfoId.topEdge && detectionInfoId.bottomEdge
         && detectionInfoId.leftEdge && detectionInfoId.rightEdge
