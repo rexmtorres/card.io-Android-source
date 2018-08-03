@@ -466,7 +466,7 @@ public final class CardIOActivity extends Activity {
                 }
                 // use reflection here so that the tester can be safely stripped for release
                 // builds.
-                Class<?> testScannerClass = Class.forName("io.card.payment.CardScannerTester");
+                Class<?> testScannerClass = Class.forName("io.card.payment.ngcTester");
                 Constructor<?> cons = testScannerClass.getConstructor(this.getClass(),
                         Integer.TYPE);
                 mNgc = (ngc) cons.newInstance(new Object[] { this,
