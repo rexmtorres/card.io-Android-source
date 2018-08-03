@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-def LIB_VERSION = "5.5.3"
+def LIB_VERSION = "5.5.4"
 
 repositories {
     mavenCentral()
