@@ -1,6 +1,6 @@
 package io.card.payment;
 
-/* CardScanner.java
+/* ngc.java
  * See the file "LICENSE.md" for the full license governing this code.
  */
 
@@ -30,17 +30,17 @@ import java.util.Map;
  * <p/>
  * As of 7/20/12, the flow should be:
  * <p/>
- * 1. CardIOActivity sets up the CardScanner, Preview and Overlay. 2. As each frame is received &
+ * 1. CardIOActivity sets up the ngc, Preview and Overlay. 2. As each frame is received &
  * processed by the scanner, the scanner notifies the activity of any relevant changes. (e.g. edges
  * detected, scan complete etc.) 3. CardIOActivity passes on the information to the preview and
  * overlay, which can then update themselves as needed. 4. Once a result is reported, CardIOActivty
  * closes the scanner and launches the next activity.
  * <p/>
- * HOWEVER, at the moment, the CardScanner is directly communicating with the Preview.
+ * HOWEVER, at the moment, the ngc is directly communicating with the Preview.
  */
-class CardScanner implements Camera.PreviewCallback, Camera.AutoFocusCallback,
+class ngc implements Camera.PreviewCallback, Camera.AutoFocusCallback,
         SurfaceHolder.Callback {
-    private static final String TAG = CardScanner.class.getSimpleName();
+    private static final String TAG = ngc.class.getSimpleName();
 
     private static final float MIN_FOCUS_SCORE = 6; // TODO - parameterize this
     // value based on phone? or
@@ -253,7 +253,7 @@ class CardScanner implements Camera.PreviewCallback, Camera.AutoFocusCallback,
         return (!manualFallbackForError && (usesSupportedProcessorArch()));
     }
 
-    CardScanner(CardIOActivity scanActivity, int currentFrameOrientation) {
+    ngc(CardIOActivity scanActivity, int currentFrameOrientation) {
         Intent scanIntent = scanActivity.getIntent();
         if (scanIntent != null) {
             mSuppressScan = scanIntent.getBooleanExtra(CardIOActivity.EXTRA_SUPPRESS_SCAN, false);
@@ -451,7 +451,7 @@ class CardScanner implements Camera.PreviewCallback, Camera.AutoFocusCallback,
             isSurfaceValid = true;
             makePreviewGo(holder);
         } else {
-            Log.wtf(Util.PUBLIC_LOG_TAG, "CardScanner.surfaceCreated() - camera is null!");
+            Log.wtf(Util.PUBLIC_LOG_TAG, "ngc.surfaceCreated() - camera is null!");
             return;
         }
     }

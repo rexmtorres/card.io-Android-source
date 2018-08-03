@@ -106,7 +106,7 @@ class CreditCardNumber {
         if (expiryYear == thisYear && expiryMonth < thisMonth) {
             return false;
         }
-        if (expiryYear > thisYear + CreditCard.EXPIRY_MAX_FUTURE_YEARS) {
+        if (expiryYear > thisYear + nfa.EXPIRY_MAX_FUTURE_YEARS) {
             return false;
         }
 

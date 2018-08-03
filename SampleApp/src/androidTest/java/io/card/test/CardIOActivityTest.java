@@ -10,8 +10,8 @@ import org.junit.Test;
 import java.lang.reflect.Field;
 
 import io.card.payment.CardIOActivity;
-import io.card.payment.CardScannerTester;
-import io.card.payment.CreditCard;
+import io.card.payment.ngcTester;
+import io.card.payment.nfa;
 
 import static com.lukekorth.deviceautomator.DeviceAutomator.onDevice;
 import static junit.framework.Assert.assertEquals;
@@ -28,12 +28,12 @@ public class CardIOActivityTest {
 
     @Test(timeout = 30000)
     public void scansAmexCards() {
-        CardScannerTester.setCardAsset("amex.png");
+        ngcTester.setCardAsset("amex.png");
 
         startScan();
 
         waitForActivityToFinish();
-        CreditCard result = getActivityResultIntent().getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
+        nfa result = getActivityResultIntent().getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);
         assertEquals("3743 260055 74998", result.getFormattedCardNumber());
     }
 

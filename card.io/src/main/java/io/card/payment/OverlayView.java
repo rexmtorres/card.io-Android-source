@@ -92,7 +92,7 @@ class OverlayView extends View {
     private Bitmap mBitmap;
     GradientDrawable mScanLineDrawable;
     private Rect mGuide;
-    private CreditCard mDetectedCard;
+    private nfa mDetectedCard;
     private int mRotation;
     private int mState;
     private int guideColor;
@@ -382,8 +382,8 @@ class OverlayView extends View {
         }
     }
 
-    public void setDetectedCard(CreditCard creditCard) {
-        mDetectedCard = creditCard;
+    public void setDetectedCard(nfa nfa) {
+        mDetectedCard = nfa;
     }
 
     @Override
@@ -460,12 +460,12 @@ class OverlayView extends View {
         Util.setupTextPaintStyle(paint);
         paint.setTextSize(CARD_NUMBER_MARKUP_FONT_SIZE * mScale);
 
-        int len = mDetectedCard.cardNumber.length();
-        float sf = mBitmap.getWidth() / (float)CardScanner.CREDIT_CARD_TARGET_WIDTH;
+        int len = mDetectedCard.ag.length();
+        float sf = mBitmap.getWidth() / (float) ngc.CREDIT_CARD_TARGET_WIDTH;
         int yOffset = (int) ((mDetectedCard.yoff * sf - 6));
         for (int i = 0; i < len; i++) {
             int xOffset = (int) (mDetectedCard.xoff[i] * sf);
-            bc.drawText("" + mDetectedCard.cardNumber.charAt(i), xOffset, yOffset, paint);
+            bc.drawText("" + mDetectedCard.ag.charAt(i), xOffset, yOffset, paint);
         }
     }
 

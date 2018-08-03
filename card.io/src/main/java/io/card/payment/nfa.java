@@ -1,6 +1,6 @@
 package io.card.payment;
 
-/* CreditCard.java
+/* nfa.java
  * See the file "LICENSE.md" for the full license governing this code.
  */
 
@@ -14,34 +14,34 @@ import java.util.UUID;
  *
  * @version 2.0
  */
-public class CreditCard implements Parcelable {
+public class nfa implements Parcelable {
 
     /**
      * Number of years into the future that a card expiration date is considered to be valid.
      */
     public static final int EXPIRY_MAX_FUTURE_YEARS = 15;
 
-    private static final String TAG = CreditCard.class.getSimpleName();
+    private static final String TAG = nfa.class.getSimpleName();
 
     /**
      * 15 or 16 digit card number. All numbers, no spaces.
      */
-    public String cardNumber;
+    public String ag;
 
     /**
      * Month in two digit natural form. {January=1, ..., December=12}
      */
-    public int expiryMonth = 0;
+    public int bg = 0;
 
     /**
      * Four digit year
      */
-    public int expiryYear = 0;
+    public int cc = 0;
 
     /**
      * Three or four character security code.
      */
-    public String cvv;
+    public String bc;
 
     /**
      * Billing postal code for card.
@@ -51,7 +51,7 @@ public class CreditCard implements Parcelable {
     /**
      * Cardholder name.
      */
-    public String cardholderName;
+    public String sc;
 
     // these should NOT be public
     String scanId;
@@ -60,28 +60,28 @@ public class CreditCard implements Parcelable {
     int[] xoff;
 
     // constructors
-    public CreditCard() {
+    public nfa() {
         xoff = new int[16];
         scanId = UUID.randomUUID().toString();
     }
 
-    public CreditCard(String number, int month, int year, String code, String postalCode, String cardholderName) {
-        this.cardNumber = number;
-        this.expiryMonth = month;
-        this.expiryYear = year;
-        this.cvv = code;
-        this.postalCode = postalCode;
-        this.cardholderName = cardholderName;
+    public nfa(String l, int i, int a, String m, String r, String sc) {
+        this.ag = l;
+        this.bg = i;
+        this.cc = a;
+        this.bc = m;
+        this.postalCode = r;
+        this.sc = sc;
     }
 
     // parcelable
-    private CreditCard(Parcel src) {
-        cardNumber = src.readString();
-        expiryMonth = src.readInt();
-        expiryYear = src.readInt();
-        cvv = src.readString();
+    private nfa(Parcel src) {
+        ag = src.readString();
+        bg = src.readInt();
+        cc = src.readInt();
+        bc = src.readString();
         postalCode = src.readString();
-        cardholderName = src.readString();
+        sc = src.readString();
         scanId = src.readString();
         yoff = src.readInt();
         xoff = src.createIntArray();
@@ -94,27 +94,27 @@ public class CreditCard implements Parcelable {
 
     @Override
     public final void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(cardNumber);
-        dest.writeInt(expiryMonth);
-        dest.writeInt(expiryYear);
-        dest.writeString(cvv);
+        dest.writeString(ag);
+        dest.writeInt(bg);
+        dest.writeInt(cc);
+        dest.writeString(bc);
         dest.writeString(postalCode);
-        dest.writeString(cardholderName);
+        dest.writeString(sc);
         dest.writeString(scanId);
         dest.writeInt(yoff);
         dest.writeIntArray(xoff);
     }
 
-    public static final Parcelable.Creator<CreditCard> CREATOR = new Parcelable.Creator<CreditCard>() {
+    public static final Parcelable.Creator<nfa> CREATOR = new Parcelable.Creator<nfa>() {
 
         @Override
-        public CreditCard createFromParcel(Parcel source) {
-            return new CreditCard(source);
+        public nfa createFromParcel(Parcel source) {
+            return new nfa(source);
         }
 
         @Override
-        public CreditCard[] newArray(int size) {
-            return new CreditCard[size];
+        public nfa[] newArray(int size) {
+            return new nfa[size];
         }
     };
 
@@ -122,9 +122,9 @@ public class CreditCard implements Parcelable {
      * @return The last four digits of the card number
      */
     public String getLastFourDigitsOfCardNumber() {
-        if (cardNumber != null) {
-            int available = Math.min(4, cardNumber.length());
-            return cardNumber.substring(cardNumber.length() - available);
+        if (ag != null) {
+            int available = Math.min(4, ag.length());
+            return ag.substring(ag.length() - available);
         } else {
             return "";
         }
@@ -135,15 +135,15 @@ public class CreditCard implements Parcelable {
      * bullet ('&#8226;').
      */
     public String getRedactedCardNumber() {
-        if (cardNumber != null) {
+        if (ag != null) {
             String redacted = "";
-            if (cardNumber.length() > 4) {
-                redacted += String.format("%" + (cardNumber.length() - 4) + "s", "").replace(' ',
+            if (ag.length() > 4) {
+                redacted += String.format("%" + (ag.length() - 4) + "s", "").replace(' ',
                         '\u2022');
             }
             redacted += getLastFourDigitsOfCardNumber();
             return CreditCardNumber.formatString(redacted, false,
-                    CardType.fromCardNumber(cardNumber));
+                    CardType.fromCardNumber(ag));
         } else {
             return "";
         }
@@ -153,21 +153,21 @@ public class CreditCard implements Parcelable {
      * @return The type of card, detected from the number
      */
     public CardType getCardType() {
-        return CardType.fromCardNumber(cardNumber);
+        return CardType.fromCardNumber(ag);
     }
 
     /**
      * @return A string suitable for display, with spaces inserted for readability.
      */
     public String getFormattedCardNumber() {
-        return CreditCardNumber.formatString(cardNumber);
+        return CreditCardNumber.formatString(ag);
     }
 
     /**
      * @return <code>true</code> indicates a current, valid date.
      */
     public boolean isExpiryValid() {
-        return CreditCardNumber.isDateValid(expiryMonth, expiryYear);
+        return CreditCardNumber.isDateValid(bg, cc);
     }
 
     /**
@@ -176,17 +176,17 @@ public class CreditCard implements Parcelable {
     @Override
     public String toString() {
         String s = "{" + getCardType() + ": " + getRedactedCardNumber();
-        if (expiryMonth > 0 || expiryYear > 0) {
-            s += "  expiry:" + expiryMonth + "/" + expiryYear;
+        if (bg > 0 || cc > 0) {
+            s += "  expiry:" + bg + "/" + cc;
         }
         if (postalCode != null) {
             s += "  postalCode:" + postalCode;
         }
-        if (cardholderName != null) {
-            s += "  cardholderName:" + cardholderName;
+        if (sc != null) {
+            s += "  sc:" + sc;
         }
-        if (cvv != null) {
-            s += "  cvvLength:" + ((cvv != null) ? cvv.length() : 0);
+        if (bc != null) {
+            s += "  cvvLength:" + ((bc != null) ? bc.length() : 0);
         }
         s += "}";
         return s;
