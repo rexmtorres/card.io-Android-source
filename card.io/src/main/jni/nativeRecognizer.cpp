@@ -49,7 +49,7 @@ static struct {
   jfieldID prediction;
   jfieldID expiry_month;
   jfieldID expiry_year;
-  jfieldID detectedCard;
+  jfieldID aa;
 } detectionInfoId;
 
 static struct {
@@ -134,13 +134,13 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
   detectionInfoId.prediction = env->GetFieldID(dInfoClass, "prediction", "[I");
   detectionInfoId.expiry_month = env->GetFieldID(dInfoClass, "expiry_month", "I");
   detectionInfoId.expiry_year = env->GetFieldID(dInfoClass, "expiry_year", "I");
-  detectionInfoId.detectedCard = env->GetFieldID(dInfoClass, "detectedCard", "Lio/card/payment/nfa;");
+  detectionInfoId.aa = env->GetFieldID(dInfoClass, "aa", "Lio/card/payment/nfa;");
 
   if (!(detectionInfoId.complete && detectionInfoId.topEdge && detectionInfoId.bottomEdge
         && detectionInfoId.leftEdge && detectionInfoId.rightEdge
         && detectionInfoId.focusScore && detectionInfoId.prediction
         && detectionInfoId.expiry_month && detectionInfoId.expiry_year
-        && detectionInfoId.detectedCard
+        && detectionInfoId.aa
        )) {
     dmz_error_log("at least one field was not found for DetectionInfo");
     return -1;
@@ -234,7 +234,7 @@ void setScanCardNumberResult(JNIEnv* env, jobject dinfo, ScannerResult* scanResu
   dmz_debug_log("setting prediction array region");
   env->SetIntArrayRegion((jintArray)digitArray, 0, scanResult->n_numbers, numbers);
 
-  jobject cardObj = env->GetObjectField(dinfo, detectionInfoId.detectedCard);
+  jobject cardObj = env->GetObjectField(dinfo, detectionInfoId.aa);
   dmz_debug_log("got cardObj: %x", cardObj);
   env->SetIntField(cardObj, creditCardId.yoff, scanResult->vseg.y_offset);
 

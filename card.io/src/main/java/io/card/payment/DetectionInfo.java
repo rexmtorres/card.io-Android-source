@@ -19,7 +19,7 @@ class DetectionInfo {
     public int[] prediction;
     public int expiry_month;
     public int expiry_year;
-    public nfa detectedCard;
+    public nfa aa;
 
     public DetectionInfo() {
         complete = false;
@@ -28,7 +28,7 @@ class DetectionInfo {
         prediction[0] = -1;
         prediction[15] = -1;
 
-        detectedCard = new nfa();
+        aa = new nfa();
     }
 
     ;
@@ -51,13 +51,13 @@ class DetectionInfo {
         for (int i = 0; i < 16 && 0 <= prediction[i] && prediction[i] < 10; i++) {
             numberStr += String.valueOf(prediction[i]);
         }
-        detectedCard.ag = numberStr;
+        aa.ag = numberStr;
 
         // set these regardless. They'll just be zeroes if not found.
-        detectedCard.bg = expiry_month;
-        detectedCard.cc = expiry_year;
+        aa.bg = expiry_month;
+        aa.cc = expiry_year;
         
-        return detectedCard;
+        return aa;
     }
 
     int numVisibleEdges() {
